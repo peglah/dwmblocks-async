@@ -162,3 +162,32 @@ Apart from that, you need `dwm` to be patched with
 This work would not have been possible without
 [Luke's build of dwmblocks](https://github.com/LukeSmithxyz/dwmblocks) and
 [Daniel Bylinka's statuscmd patch](https://dwm.suckless.org/patches/statuscmd/).
+
+
+Update custom branch
+------------
+Here’s a summarized workflow:
+Update master branch with upstream changes:
+
+    git checkout master
+    git fetch upstream
+    git rebase upstream/master
+    git push origin master
+
+Reapply patches on custom branch:
+
+    git checkout custom
+    git rebase master
+
+If there are conflicts during the rebase, Git will prompt you to resolve them. Fix the conflicts in the affected files, then continue the rebase:
+
+    git add <resolved-file>
+    git rebase --continue
+
+If you want to abort the rebase:
+
+    git rebase --abort
+
+Push your changes:
+
+    git push origin custom
